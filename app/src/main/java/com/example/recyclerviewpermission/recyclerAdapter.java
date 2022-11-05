@@ -16,9 +16,15 @@ import java.util.ArrayList;
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyViewHolder> {
     private ArrayList<Permiso> permisoList;
-
-    public recyclerAdapter(ArrayList<Permiso> permisoList){
+    //Evento onitemclicklistener
+    final recyclerAdapter.OnItemCliclkListener listener;
+    public recyclerAdapter(ArrayList<Permiso> permisoList,recyclerAdapter.OnItemCliclkListener listener){
         this.permisoList = permisoList;
+        this.listener = listener;
+    }
+    //OnItemClickListener
+    public interface OnItemCliclkListener {
+        void OnItemClick();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -39,8 +45,17 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         }
         @Override
         public void onClick(View view) {
+            listener.OnItemClick();
             Intent intent = permisoholder.getAccion();
             view.getContext().startActivity(intent);
+        }
+        void binData(final recyclerAdapter item){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.OnItemClick();
+                }
+            });
         }
     }
 

@@ -2,7 +2,9 @@ package com.example.recyclerviewpermission;
 
 import android.content.Intent;
 
-public class Permiso {
+import java.io.Serializable;
+
+public class Permiso implements Serializable {
     private String permiso;
     private Intent accion;
 
